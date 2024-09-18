@@ -2,6 +2,7 @@ package diop.lucien.inventoryservice.web;
 
 import diop.lucien.inventoryservice.entities.Product;
 import diop.lucien.inventoryservice.repository.ProductRepository;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,5 +28,10 @@ public class ProductRestController {
     @GetMapping("/products/{id}")
     public Product productById(@RequestParam String id) {
         return productRepository.findById(id).get();
+    }
+
+    @GetMapping("/auth")
+    public Authentication authentication(Authentication authentication) {
+        return authentication;
     }
 }
