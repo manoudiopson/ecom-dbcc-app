@@ -16,7 +16,7 @@ public class InventoryServiceApplication {
         SpringApplication.run(InventoryServiceApplication.class, args);
     }
 
-    //@Bean
+    @Bean
     CommandLineRunner commandLineRunner(ProductRepository productRepository) {
         return args -> {
             productRepository.save(Product.builder().id(UUID.randomUUID().toString()).name("Computer").price(800).quantity(11).build());
