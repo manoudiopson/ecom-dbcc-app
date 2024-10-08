@@ -24,6 +24,11 @@ public class OrdersRestControllers {
     @GetMapping("/orders")
     public List<Order> findAllOrders() {
         List<Order> allOrders = orderRepository.findAll();
+        allOrders.forEach( o-> {
+            o.getProductItems().forEach(pi -> {
+                pi.setProduct(inventoryRestClient.findProductById(pi.getProductId()));
+            });
+        });
         return allOrders;
     }
 
